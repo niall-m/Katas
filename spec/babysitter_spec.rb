@@ -26,5 +26,11 @@ describe Babysitter do
     it 'creates a class instance with valid input arguments' do 
       expect(babysitter).to be_truthy
     end
+
+    context 'validations' do 
+      it 'detects invalid initialization arguments' do 
+        expect { babysitter(client: "fam_D") }.to raise_error("invalid")
+      end
+    end    
   end
 end
