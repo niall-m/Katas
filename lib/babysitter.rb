@@ -5,7 +5,8 @@ class Babysitter
 
   def initialize(start_time, end_time, client) 
     unless Job.clients.include?(client)
-      raise ArgumentError, 'invalid'
+      raise ArgumentError, 
+      "invalid start_time (#{start_time}), end_time (#{end_time}), or client (#{client})"
     end
     
     @start_time, @end_time = start_time, end_time

@@ -29,7 +29,13 @@ describe Babysitter do
 
     context 'validations' do 
       it 'detects invalid initialization arguments' do 
-        expect { babysitter(client: "fam_D") }.to raise_error("invalid")
+        expect { babysitter(client: "fam_D") }.to raise_error(ArgumentError)
+      end
+
+      it 'includes invalid arguments in the error message' do 
+        expect { babysitter(client: "fam_D") }.to raise_error(
+          "invalid start_time (17), end_time (23), or client (fam_D)"
+        )
       end
     end    
   end
