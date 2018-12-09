@@ -1,17 +1,26 @@
 require 'babysitter'
 
 describe Babysitter do 
+  def babysitter(params = {})
+    defaults = {
+      start_time: 17, 
+      end_time: 23, 
+      client: "fam_A"
+    }
+    Babysitter.new(*defaults.merge(params).values)
+  end
+  
   context '#initialize' do 
     it 'has a start time' do 
-      expect(Babysitter.new(17, 23, "fam_A").start_time).to eq(17)
+      expect(babysitter.start_time).to eq(17)
     end
 
     it 'has an end time' do 
-      expect(Babysitter.new(20, 04, "fam_A").end_time).to eq(04)
+      expect(babysitter.end_time).to eq(23)
     end
 
     it 'has a client' do 
-      expect(Babysitter.new(20, 04, "fam_A").client).to eq("fam_A")
+      expect(babysitter.client).to eq("fam_A")
     end
   end
 end
