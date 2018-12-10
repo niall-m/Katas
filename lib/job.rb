@@ -24,4 +24,20 @@ class Job
   def self.clients 
     CLIENTS
   end
+  
+  def self.valid_hours?(start_time, end_time)
+    if !(HOURS.include?(start_time))
+      raise ArgumentError, "Invalid start time (#{start_time})."
+    elsif !(HOURS.include?(end_time) )
+      raise ArgumentError, "Invalid end time (#{end_time})."
+    elsif HOURS.index(start_time) >= HOURS.index(end_time)
+      raise ArgumentError, "End time (#{end_time}) before start time (#{start_time})."
+    end
+    true
+  end
+
+  def self.valid_client?(client)
+    raise ArgumentError, "Invalid client (#{client})." unless CLIENTS.include?(client) 
+    true
+  end
 end
