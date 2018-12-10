@@ -36,6 +36,10 @@ describe Babysitter do
         expect { babysitter(client: "fam_D") }.to raise_error(
           "invalid start_time (17), end_time (23), or client (fam_D)"
         )
+
+        expect { babysitter(start_time: 16) }.to raise_error(
+          "invalid start_time (16), end_time (23), or client (client_A)"
+        )
       end
     end    
   end
