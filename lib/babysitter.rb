@@ -9,4 +9,11 @@ class Babysitter
     @start_time, @end_time = start_time, end_time
     @client, @rates = Job.clients.find { |family, values| family == client }
   end
+
+  def billable_hours
+    start_idx = Job.hours.index(start_time)
+    end_idx = Job.hours.index(end_time)
+
+    (start_idx...end_idx)
+  end
 end

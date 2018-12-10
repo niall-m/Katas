@@ -4,7 +4,7 @@ describe Babysitter do
   def babysitter(params = {})
     defaults = {
       start_time: 17, 
-      end_time: 23, 
+      end_time: 04, 
       client: :client_A
     }
     Babysitter.new(*defaults.merge(params).values)
@@ -16,7 +16,7 @@ describe Babysitter do
     end
 
     it 'has an end time' do 
-      expect(babysitter.end_time).to eq(23)
+      expect(babysitter.end_time).to eq(04)
     end
 
     it 'has a client' do 
@@ -30,17 +30,13 @@ describe Babysitter do
     context 'validations' do 
       it 'detects invalid initialization arguments' do 
         expect { babysitter(client: :client_D) }.to raise_error(ArgumentError)
-        
         expect { babysitter(start_time: 16) }.to raise_error(ArgumentError)
-        
         expect { babysitter(end_time: 05) }.to raise_error(ArgumentError)
       end
 
       it 'includes invalid arguments in the error message' do 
         expect { babysitter(client: :client_D) }.to raise_error("Invalid client (client_D).")
-        
         expect { babysitter(start_time: 16) }.to raise_error("Invalid start time (16).")
-        
         expect { babysitter(end_time: 10) }.to raise_error("Invalid end time (10).")
       end
 
@@ -50,5 +46,14 @@ describe Babysitter do
         )
       end
     end    
+  end
+
+  describe 'calculations' do 
+    context '#billable_hours' do 
+      it 'returns a range of hours worked by index position' do 
+        expect(babysitter.billable_hours).to cover(0, 10)
+        expect(babysitter(start_time: 23).billable_hours).to_not cover(0, 5)
+      end
+    end
   end
 end
