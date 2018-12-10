@@ -55,5 +55,18 @@ describe Babysitter do
         expect(babysitter(start_time: 23).billable_hours).to_not cover(0, 5)
       end
     end
+    
+    context '#payment' do 
+      it 'adds hourly rate and returns total sum' do 
+        allow(babysitter).to receive(:payment)
+        expect(babysitter.payment).to eq(190) 
+        expect(babysitter(end_time: 18).payment).to eq(15) 
+      end
+
+      it 'differentiates between clients' do 
+        expect(babysitter(client: :client_B).payment).to eq(132) 
+        expect(babysitter(client: :client_C).payment).to eq(189) 
+      end
+    end
   end
 end

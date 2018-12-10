@@ -16,4 +16,16 @@ class Babysitter
 
     (start_idx...end_idx)
   end
+  
+  def payment
+    total = 0
+
+    billable_hours.each do |hour_idx|
+      hour = Job.hours[hour_idx]
+      pay_rate = @rates.select { |rate, hours| hours.include?(hour) }.keys.first
+      total += pay_rate
+    end
+
+    total
+  end
 end
