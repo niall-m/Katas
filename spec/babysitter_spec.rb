@@ -5,7 +5,7 @@ describe Babysitter do
     defaults = {
       start_time: 17, 
       end_time: 23, 
-      client: "client_A"
+      client: :client_A
     }
     Babysitter.new(*defaults.merge(params).values)
   end
@@ -20,7 +20,7 @@ describe Babysitter do
     end
 
     it 'has a client' do 
-      expect(babysitter.client).to eq("client_A")
+      expect(babysitter.client).to eq(:client_A)
     end
 
     it 'creates a class instance with valid input arguments' do 
