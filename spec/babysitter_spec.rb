@@ -23,8 +23,14 @@ describe Babysitter do
       expect(babysitter.client).to eq(:client_A)
     end
 
+    it 'has a rates hash' do 
+      expect(babysitter.rates.keys).to contain_exactly(15, 20)
+      expect(babysitter(client: :client_B).rates.keys).to contain_exactly(12, 8, 16)
+      expect(babysitter(client: :client_C).rates.keys).to contain_exactly(21, 15)
+    end
+
     it 'creates a class instance with valid input arguments' do 
-      expect(babysitter).to be_truthy
+      expect( babysitter(start_time: 22, end_time: 02, client: :client_C) ).to be_truthy
     end
 
     context 'validations' do 

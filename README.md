@@ -67,6 +67,7 @@ $ gem install bundler
 ```
 
 By now we should be able to refer back to the top and run those specs.
+
 For more details on what `rbenv init` actually does, visit the rbenv [Github docs](https://github.com/rbenv/rbenv#how-rbenv-hooks-into-your-shell).
 
 ### Windows and Linux 
